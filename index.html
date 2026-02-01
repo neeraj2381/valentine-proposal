@@ -24,6 +24,8 @@ body {
     box-shadow: 0 15px 40px rgba(0,0,0,0.2);
     text-align: center;
     max-width: 400px;
+    position: relative;
+    z-index: 2;
 }
 
 h1 { color: #ff3e6c; margin-bottom: 10px; }
@@ -41,18 +43,25 @@ button {
 #yes { background: #ff3e6c; color: white; }
 #no { background: #ddd; position: absolute; }
 
-#meme {
-    margin-top: 20px;
-    max-width: 100%;
-    display: none;
-    border-radius: 15px;
-}
-
 #message {
     margin-top: 15px;
     font-size: 22px;
     color: #ff3e6c;
     font-weight: bold;
+}
+
+/* Floating Hearts */
+.heart {
+    position: absolute;
+    bottom: -20px;
+    font-size: 24px;
+    animation: floatUp 5s linear infinite;
+    opacity: 0.8;
+}
+
+@keyframes floatUp {
+    0% { transform: translateY(0) scale(1); opacity: 0.9; }
+    100% { transform: translateY(-100vh) scale(1.5); opacity: 0; }
 }
 </style>
 </head>
@@ -67,16 +76,13 @@ button {
     <button id="no">NO 🙈</button>
 
     <div id="message"></div>
-    <img id="meme" src="https://media.giphy.com/media/5GoVLqeAOo6PK/giphy.gif" alt="happy meme">
-    
-    <audio id="bgMusic" src="careless_whisper.mp3" preload="auto"></audio>
+    <audio id="bgMusic" src="careless.mp3" preload="auto"></audio>
 </div>
 
 <script>
 const noBtn = document.getElementById("no");
 const yesBtn = document.getElementById("yes");
 const msg = document.getElementById("message");
-const meme = document.getElementById("meme");
 const music = document.getElementById("bgMusic");
 
 // NO button runs
@@ -87,15 +93,32 @@ noBtn.addEventListener("mouseover", () => {
     noBtn.style.top = y + "px";
 });
 
-// YES click → Phase 2
+// YES click → celebration
 yesBtn.addEventListener("click", () => {
     yesBtn.style.display = "none";
     noBtn.style.display = "none";
-    msg.innerHTML = "YAYYY 🎉 Best decision ever 💘";
-    meme.style.display = "block";
+    msg.innerHTML = "YAYYY 💘 Best decision ever 🎉";
     document.body.style.background = "linear-gradient(135deg, #ff3e6c, #ff8fa3)";
     music.play().catch(()=>{});
+    startHearts();
 });
+
+// Create floating hearts
+function startHearts() {
+    setInterval(() => {
+        const heart = document.createElement("div");
+        heart.classList.add("heart");
+        heart.innerHTML = "💖";
+        heart.style.left = Math.random() * 100 + "vw";
+        heart.style.fontSize = (20 + Math.random() * 20) + "px";
+        heart.style.animationDuration = (3 + Math.random() * 2) + "s";
+        document.body.appendChild(heart);
+
+        setTimeout(() => {
+            heart.remove();
+        }, 5000);
+    }, 300);
+}
 </script>
 
 </body>
