@@ -84,4 +84,55 @@ button {
 
 <body>
 
-<!--
+<!-- Loading Screen -->
+<div class="screen" id="loading">
+    <h2>Launching Catherine.exe 💻</h2>
+    <p>Scanning cuteness levels...</p>
+    <p>Checking compatibility with Neeraj...</p>
+    <div class="loader"><div class="progress"></div></div>
+    <p>Please wait. This is advanced boyfriend technology.</p>
+</div>
+
+<!-- Proposal -->
+<div class="card" id="main">
+    <h1>Catherine 💖</h1>
+    <p>System result: You are dangerously adorable.</p>
+    <h2>Will you be Neeraj’s Valentine? 😏</h2>
+
+    <button id="yes">YES (Best decision) 🧠</button>
+    <button id="no">NO (Try catching me) 🏃‍♂️</button>
+
+    <div id="message"></div>
+    <img id="meme" src="https://i.imgur.com/4M7IWwP.png" alt="happy meme">
+</div>
+
+<script>
+// Show proposal
+setTimeout(() => {
+    document.getElementById("loading").style.display = "none";
+    document.getElementById("main").style.display = "block";
+}, 4000);
+
+const noBtn = document.getElementById("no");
+const yesBtn = document.getElementById("yes");
+const msg = document.getElementById("message");
+const meme = document.getElementById("meme");
+
+// NO button runs
+noBtn.addEventListener("mouseover", () => {
+    const x = Math.random() * (window.innerWidth - 120);
+    const y = Math.random() * (window.innerHeight - 60);
+    noBtn.style.left = x + "px";
+    noBtn.style.top = y + "px";
+});
+
+// YES celebration
+yesBtn.addEventListener("click", () => {
+    msg.innerHTML = "MISSION SUCCESS 🎉 Catherine & Neeraj are now Official 💘";
+    meme.style.display = "block";
+    document.body.style.background = "linear-gradient(135deg, #ff3e6c, #ff8fa3)";
+});
+</script>
+
+</body>
+</html>
