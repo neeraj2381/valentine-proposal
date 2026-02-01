@@ -104,6 +104,7 @@ button {
 
     <div id="message"></div>
     <img id="meme" src="https://i.imgur.com/4M7IWwP.png" alt="happy meme">
+    <audio id="bgMusic" src="careless.mp3"></audio>
 </div>
 
 <script>
@@ -128,9 +129,10 @@ noBtn.addEventListener("mouseover", () => {
 
 // YES celebration
 yesBtn.addEventListener("click", () => {
-    msg.innerHTML = "MISSION SUCCESS 🎉 Catherine & Neeraj are now Official 💘";
+    msg.innerHTML = "SUCCESS 🎉 Catherine & Neeraj are now Officially Upgraded 💘";
     meme.style.display = "block";
     document.body.style.background = "linear-gradient(135deg, #ff3e6c, #ff8fa3)";
+    document.getElementById("bgMusic").play();
 });
 </script>
 
