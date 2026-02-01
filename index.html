@@ -50,6 +50,17 @@ button {
     font-weight: bold;
 }
 
+#photo {
+    margin-top: 20px;
+    width: 160px;
+    height: 160px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 5px solid white;
+    box-shadow: 0 0 25px rgba(255,255,255,0.9);
+    display: none;
+}
+
 /* Floating Hearts */
 .heart {
     position: absolute;
@@ -76,6 +87,7 @@ button {
     <button id="no">NO 🙈</button>
 
     <div id="message"></div>
+    <img id="photo" src="us.jpg" alt="us photo">
     <audio id="bgMusic" src="careless.mp3" preload="auto"></audio>
 </div>
 
@@ -84,6 +96,7 @@ const noBtn = document.getElementById("no");
 const yesBtn = document.getElementById("yes");
 const msg = document.getElementById("message");
 const music = document.getElementById("bgMusic");
+const photo = document.getElementById("photo");
 
 // NO button runs
 noBtn.addEventListener("mouseover", () => {
@@ -99,11 +112,12 @@ yesBtn.addEventListener("click", () => {
     noBtn.style.display = "none";
     msg.innerHTML = "YAYYY 💘 Best decision ever 🎉";
     document.body.style.background = "linear-gradient(135deg, #ff3e6c, #ff8fa3)";
+    photo.style.display = "block";
     music.play().catch(()=>{});
     startHearts();
 });
 
-// Create floating hearts
+// Floating hearts
 function startHearts() {
     setInterval(() => {
         const heart = document.createElement("div");
@@ -114,9 +128,7 @@ function startHearts() {
         heart.style.animationDuration = (3 + Math.random() * 2) + "s";
         document.body.appendChild(heart);
 
-        setTimeout(() => {
-            heart.remove();
-        }, 5000);
+        setTimeout(() => heart.remove(), 5000);
     }, 300);
 }
 </script>
